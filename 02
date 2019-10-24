@@ -7,3 +7,4 @@ sudo deluser --remove-home  $1
 else
 echo "usage : ./02 [USERNAME] "
 fi
+xv
