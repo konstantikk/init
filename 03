@@ -1,0 +1,31 @@
+#!/bin/bash
+if [[ -n "$1" && -n "$2" ]]
+then
+	case "$1" in
+		-first)
+			COMMIT=$(git log | head -n 5 | tail -n 1)
+			mkdir ~/test1
+			cp -R $(ls -a | grep -v "^\.") ~/test1/
+			cd ~/test1
+			git init
+			git remote add origin $2
+			git add .
+			git commit -m "$COMMIT"
+			git push -u origin master
+			rm -rf ~/test1;;
+		-h) echo "-first [URL] for your first push on remote repository
+			-h help
+			-- no param [URL] for another push on remote repository";;
+		--) git clone  $2 ~/test1
+			cp -R $(ls -a | grep -v "^\.") ~/test1/
+			COMMIT=$( git log | head -n 5 | tail -n 1)
+			cd ~/test1/
+			git add .
+			git commit -m "$COMMIT"
+			git push
+			rm -rf ~/test1;;
+		*) echo "is not a option" ;;
+	esac
+else
+	echo "usage: ./03  [option [-first][--][-h]]  [URL]"
+fi
