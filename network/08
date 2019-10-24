@@ -1,0 +1,1 @@
+whois $(host slash16.org | awk '{print $4}' | head -n 1)

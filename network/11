@@ -1,0 +1,1 @@
+traceroute  -m 8  slash16.org | head -n 2 | tail -n 1 |  awk '{print $2}'

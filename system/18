@@ -1,0 +1,3 @@
+# ps -aux | grep sshd
+# kill <PID>
+systemctl stop ssh
